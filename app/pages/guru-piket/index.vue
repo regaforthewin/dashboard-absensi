@@ -7,14 +7,15 @@
       <h1>WELCOME Guru Piket</h1>
 
       <div class="header-actions">
-        <!-- Logout -->
-        <button class="logout-button" title="Logout">↪</button>
-
-        <!-- Profile -->
-        <button class="profile-button" title="Profile">
-          <span class="profile-head"></span>
-          <span class="profile-body"></span>
-        </button>
+        <span
+          class="material-symbols-outlined"
+          style="font-size: 36px; transform: rotate(180deg)"
+        >
+          logout
+        </span>
+        <div class="profil-background">
+          <span class="material-symbols-outlined"> account_circle </span>
+        </div>
       </div>
     </header>
 
@@ -116,6 +117,8 @@ definePageMeta({
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* =========================
@@ -130,7 +133,9 @@ definePageMeta({
   min-height: 100vh;
   min-height: 100dvh;
 
-  padding: 8px 12px;
+  padding: 16px;
+
+  /* padding: 8px 12px; */
 
   overflow: hidden;
 
@@ -174,9 +179,10 @@ definePageMeta({
   position: relative;
   z-index: 5;
 
-  height: 47px;
+  height: 68px;
 
-  padding: 0 12px;
+  /* margin: 14px 15px 0; */
+  padding: 0 16px;
 
   display: flex;
   align-items: center;
@@ -186,7 +192,7 @@ definePageMeta({
 
   background: linear-gradient(90deg, #ffd76c, #f2cc19);
 
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Welcome */
@@ -207,82 +213,44 @@ definePageMeta({
 .header-actions {
   display: flex;
   align-items: center;
-
-  gap: 8px;
+  gap: 12px;
 }
 
-/* Logout */
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.logout-button {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
-  padding: 0;
+  font-weight: bold;
 
-  border: none;
+  border-radius: 5px;
 
-  background: transparent;
-
-  color: #222;
-
-  font-size: 24px;
-
-  cursor: pointer;
-
-  transform: rotate(180deg);
+  background-color: #222;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Profile */
+.profil-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.profile-button {
-  position: relative;
-
-  width: 38px;
-  height: 38px;
-
-  padding: 0;
-
-  border: 3px solid white;
+  /*width: 40px;
+  height: 40px; */
+  padding: 3px 4px;
 
   border-radius: 50%;
 
   background: #91849d;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-
-  cursor: pointer;
 }
 
-/* Profile head */
-
-.profile-head {
-  position: absolute;
-
-  top: 6px;
-  left: 10px;
-
-  width: 12px;
-  height: 12px;
-
-  border-radius: 50%;
-
-  background: white;
-}
-
-/* Profile body */
-
-.profile-body {
-  position: absolute;
-
-  left: 6px;
-  bottom: 5px;
-
-  width: 20px;
-  height: 12px;
-
-  border-radius: 20px 20px 0 0;
-
-  background: white;
+.profil-background span {
+  font-size: 44px;
+  color: #fff;
 }
 
 /* =========================
@@ -534,7 +502,6 @@ definePageMeta({
 
   position: absolute;
 
-
   right: -40px;
   top: -60px;
 
@@ -632,7 +599,7 @@ definePageMeta({
 }
 
 .customer-content form button {
-  padding: 6px 0;
+  padding: 9px 0;
   width: 60px;
   border-radius: 4px;
   background: #f2cc19;
@@ -640,6 +607,7 @@ definePageMeta({
 
   font-size: 12px;
   font-weight: 600;
+  border: none;
 }
 
 /* =========================

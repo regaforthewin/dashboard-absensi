@@ -1,6 +1,6 @@
 <template>
-  <div class="dashboard-layout">
-    <DashboardHeader name="NAME" />
+  <div class="page">
+    <DashboardHeader />
 
     <main class="dashboard-content">
       <slot />
@@ -9,25 +9,55 @@
 </template>
 
 <script setup>
-import DashboardHeader from "../components/dahsboard/DashboardHeader.vue";
+import DashboardHeader from "~/components/dashboard/DashboardHeader.vue";
 </script>
 
 <style scoped>
-.dashboard-layout {
+.page {
+  position: relative;
+
   min-height: 100vh;
   min-height: 100dvh;
 
-  background: #1f1f1f;
+  padding: 16px;
 
-  padding: 20px;
+  font-family: "Poppins", sans-serif;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #f1f0f2 40%,
+    #f1f0f2 41%,
+    #ffffff 41%
+  );
+}
+
+.page::before {
+  content: "";
+
+  position: absolute;
+
+  left: -100px;
+  bottom: 0;
+
+  width: 350px;
+  height: 220px;
+
+  background: #f1f0f2;
+
+  border-radius: 0 100% 0 0;
+
+  opacity: 0.7;
+
+  z-index: 0;
 }
 
 .dashboard-content {
-  width: 100%;
-  min-height: calc(100vh - 40px);
+  position: relative;
 
-  background: #ffffff;
-
-  overflow: hidden;
+  z-index: 1;
 }
 </style>

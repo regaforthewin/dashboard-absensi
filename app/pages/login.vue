@@ -85,6 +85,8 @@ export default {
       console.log("Username:", this.username);
       console.log("Password:", this.password);
       console.log("Role:", this.role);
+
+      this.$router.push({ name: "dashboard" });
     },
   },
 };
@@ -108,7 +110,6 @@ export default {
   padding: 20px;
 
   background: #1f1f1f;
-  
 }
 
 .login-container {

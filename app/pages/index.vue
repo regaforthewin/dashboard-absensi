@@ -95,31 +95,31 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  overflow-y: hidden;
 }
 
 .login-page {
-  min-height: 100vh;
-  min-height: 100dvh;
+  width: 100%;
+  height: 100dvh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* padding: 20px; */
-
-  /* background: #1f1f1f; */
+  overflow-y: hidden;
 }
 
 .login-container {
   position: relative;
 
   width: 100%;
-  height: 100vh;
-  /* height: 100vh; */
-  /* max-width: 850px; */
-  /* min-height: 600px; */
+  height: 100dvh;
 
-  overflow: hidden;
+  overflow-y: hidden;
 
   background: #ffffff;
 }
@@ -168,7 +168,7 @@ export default {
 
 .decoration-left {
   top: 102px;
-  left: 0;
+  left: 15px;
 
   width: 350px;
   height: 180px;
@@ -178,7 +178,7 @@ export default {
 
 .decoration-right {
   top: 255px;
-  right: -5px;
+  right: 15px;
 
   width: 340px;
   height: 340px;
@@ -282,7 +282,7 @@ export default {
 
   color: #333;
 
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* =========================
@@ -312,7 +312,7 @@ export default {
     0 4px 6px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .input-wrapper input::placeholder {
@@ -358,7 +358,7 @@ export default {
 
   color: #777;
 
-  font-size: 10px;
+  font-size: 12px;
 
   cursor: pointer;
 }

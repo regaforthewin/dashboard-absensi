@@ -1,313 +1,100 @@
 <template>
-  <header class="dashboard-header">
-    <!-- Nama / Welcome -->
-    <div class="welcome">
-      WELCOME <span>"{{ name }}"</span>
+  <header class="header">
+    <div class="header-actions">
+      <div class="back-button">
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+      </div>
     </div>
 
-    <!-- Action -->
     <div class="header-actions">
-      <!-- Logout -->
-      <button
-        type="button"
-        class="header-button logout-button"
-        title="Logout"
-        @click="handleLogout"
-      >
-        <span class="logout-icon">
-          ↪
-        </span>
-      </button>
+      <span class="material-symbols-outlined logout-icon">
+        logout
+      </span>
 
-      <!-- Profile -->
-      <button
-        type="button"
-        class="header-button profile-button"
-        title="Profile"
-        @click="handleProfile"
-      >
-        <span class="profile-icon">
-          <span class="profile-head"></span>
-          <span class="profile-body"></span>
+      <div class="profil-background">
+        <span class="material-symbols-outlined">
+          account_circle
         </span>
-      </button>
+      </div>
     </div>
   </header>
 </template>
 
-<script>
-export default {
-  name: "DashboardHeader",
-
-  props: {
-    name: {
-      type: String,
-      default: "NAME",
-    },
-  },
-
-  methods: {
-    handleLogout() {
-      console.log("Logout");
-    },
-
-    handleProfile() {
-      console.log("Profile");
-    },
-  },
-};
+<script setup>
 </script>
 
 <style scoped>
-/* =========================
-   HEADER
-========================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-.dashboard-header {
-  position: relative;
-  z-index: 10;
-
-  width: calc(100% - 30px);
-  height: 68px;
-
-  margin: 14px 15px 0;
   padding: 0 16px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 68px;
 
   border-radius: 0 0 5px 5px;
 
-  background: linear-gradient(
-    90deg,
-    #ffd76c,
-    #f2cc19
-  );
+  background: linear-gradient(90deg, #ffd76c, #f2cc19);
 
-  box-shadow:
-    0 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+  position: relative;
+  z-index: 2;
 }
-
-/* =========================
-   WELCOME
-========================= */
-
-.welcome {
-  color: #222;
-
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.welcome span {
-  font-weight: 700;
-}
-
-/* =========================
-   ACTION
-========================= */
 
 .header-actions {
   display: flex;
   align-items: center;
+
   gap: 12px;
 }
 
-.header-button {
-  padding: 0;
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  border: none;
+  width: 40px;
+  height: 40px;
 
-  background: transparent;
+  border-radius: 5px;
+
+  background-color: #222;
+  color: #fff;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
 }
 
-/* =========================
-   LOGOUT
-========================= */
-
-.logout-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 38px;
-  height: 38px;
-}
-
 .logout-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 28px;
-  height: 28px;
-
-  color: #333;
-
-  font-size: 29px;
-  font-weight: 700;
-
-  line-height: 1;
+  font-size: 36px;
 
   transform: rotate(180deg);
 
-  transition: 0.2s;
+  cursor: pointer;
 }
 
-.logout-button:hover .logout-icon {
-  transform: rotate(180deg) translateX(2px);
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-button {
+.profil-background {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  width: 48px;
-  height: 48px;
-}
-
-.profile-icon {
-  position: relative;
-
-  display: block;
-
-  width: 43px;
-  height: 43px;
+  padding: 3px 4px;
 
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #6e607c,
-    #9a8baa
-  );
+  background: #91849d;
 
-  box-shadow:
-    0 3px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.profile-icon::before {
-  content: "";
+.profil-background span {
+  font-size: 44px;
 
-  position: absolute;
-
-  top: 5px;
-  left: 5px;
-
-  width: 33px;
-  height: 33px;
-
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-}
-
-/* Kepala */
-
-.profile-head {
-  position: absolute;
-
-  top: 11px;
-  left: 15px;
-
-  width: 13px;
-  height: 13px;
-
-  border-radius: 50%;
-
-  background: #ffffff;
-}
-
-/* Badan */
-
-.profile-body {
-  position: absolute;
-
-  bottom: 7px;
-  left: 10px;
-
-  width: 23px;
-  height: 14px;
-
-  border-radius: 20px 20px 0 0;
-
-  background: #ffffff;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 600px) {
-  .dashboard-header {
-    height: 60px;
-
-    margin: 10px 10px 0;
-
-    width: calc(100% - 20px);
-
-    padding: 0 12px;
-  }
-
-  .welcome {
-    font-size: 18px;
-  }
-
-  .header-actions {
-    gap: 5px;
-  }
-
-  .logout-button {
-    width: 32px;
-    height: 32px;
-  }
-
-  .logout-icon {
-    font-size: 24px;
-  }
-
-  .profile-button {
-    width: 40px;
-    height: 40px;
-  }
-
-  .profile-icon {
-    width: 37px;
-    height: 37px;
-  }
-
-  .profile-icon::before {
-    top: 4px;
-    left: 4px;
-
-    width: 29px;
-    height: 29px;
-
-    border-width: 2px;
-  }
-
-  .profile-head {
-    top: 9px;
-    left: 13px;
-
-    width: 11px;
-    height: 11px;
-  }
-
-  .profile-body {
-    bottom: 6px;
-    left: 9px;
-
-    width: 19px;
-    height: 12px;
-  }
+  color: #fff;
 }
 </style>
