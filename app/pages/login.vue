@@ -19,16 +19,16 @@
         </div>
 
         <form class="login-form" @submit.prevent="handleLogin">
-          <!-- Username -->
+          <!-- Email -->
           <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="email">Email:</label>
 
             <div class="input-wrapper">
               <input
-                id="username"
-                v-model="username"
-                type="text"
-                placeholder="Masukan Username"
+                id="email"
+                v-model="email"
+                type="email"
+                placeholder="Masukan Email"
               />
 
               <span class="input-icon">♙</span>
@@ -51,45 +51,48 @@
             </div>
           </div>
 
-          <!-- Role -->
-          <div class="login-options">
-            <button type="button" @click="role = 'admin'">
-              Log in as <span>admin</span>
-            </button>
-
-            <button type="button" @click="role = 'guru-piket'">
-              Log in as <span>guru piket</span>
-            </button>
-          </div>
+          <p v-if="error" class="login-error">{{ error }}</p>
 
           <!-- Login Button -->
-          <button type="submit" class="login-button">Log In</button>
+          <button type="submit" class="login-button" :disabled="loading">
+            {{ loading ? "Logging in..." : "Log In" }}
+          </button>
         </form>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      username: "",
-      password: "",
-      role: "",
-    };
-  },
+<script setup>
+const email = ref("");
+const password = ref("");
+const error = ref("");
+const loading = ref(false);
 
-  methods: {
-    handleLogin() {
-      console.log("Username:", this.username);
-      console.log("Password:", this.password);
-      console.log("Role:", this.role);
+const { api, token } = useApi();
 
-      this.$router.push({ name: "dashboard" });
-    },
-  },
-};
+async function handleLogin() {
+  error.value = "";
+  loading.value = true;
+
+  try {
+    const res = await api("/auth/login", {
+      method: "POST",
+      body: { email: email.value, password: password.value },
+    });
+
+    token.value = res.token;
+
+    const role = res.user?.Role;
+    const home =
+      role === "admin" ? "/admin" : role === "guru_bk" ? "/guru-piket" : "/wali-kelas";
+    await navigateTo(home);
+  } catch (e) {
+    error.value = "Email atau password salah";
+  } finally {
+    loading.value = false;
+  }
+}
 </script>
 
 <style scoped>
@@ -339,32 +342,16 @@ export default {
 }
 
 /* =========================
-   ROLE
+   LOGIN ERROR
 ========================= */
 
-.login-options {
-  display: flex;
-  justify-content: space-between;
+.login-error {
+  margin-top: 6px;
 
-  margin-top: -3px;
-}
+  color: #c0392b;
 
-.login-options button {
-  padding: 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #777;
-
-  font-size: 10px;
-
-  cursor: pointer;
-}
-
-.login-options button span {
-  text-decoration: underline;
+  font-size: 12px;
+  text-align: center;
 }
 
 /* =========================
@@ -394,6 +381,12 @@ export default {
   cursor: pointer;
 
   transition: 0.2s;
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
 }
 
 .login-button:hover {

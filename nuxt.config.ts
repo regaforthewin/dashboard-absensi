@@ -1,6 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  vite: {
+    server: {
+      allowedHosts: ['dash-absensi.regaftw.my.id']
+    }
+  },
+
   compatibilityDate: "2025-07-15",
+
+  runtimeConfig: {
+    public: {
+      apiBase: "http://localhost:8080/api/v1",
+    },
+  },
 
   devtools: {
     enabled: true,
